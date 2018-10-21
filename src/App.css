@@ -1,41 +1,67 @@
-.WrapperBase {
-  /* background-color: #e8e8e8; */
-  padding: 15px 25px;
-  font-family: 'Roboto', sans-serif;
-  text-align: left;
-  border-left: 2px solid palevioletred;
+.lightText {
+  font-weight: 200;
 }
 
-.WrapperBase .BlockWrap {
-  margin-bottom: 15px;
-  border-left: 2px solid lightsalmon;
-  padding-left: 15px;
-}
-
-.WrapperBase h1 {
-  margin: 0;
-  padding: 0;
-
+.TitlePanel {
   margin-bottom: 15px;
 }
 
-.WrapperBase h3 {
-  margin: 0;
-  padding: 0;
+.descriptionPanel {
+  margin-bottom: 15px;  
+}
 
+.descriptionPanel p {
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.linksPanel {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.linksPanel a {
+  color: palevioletred;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.linksPanel a:hover {
+  color: paleturquoise;
+}
+
+.mobileOnly {
+  font-weight: 200;
+}
+
+/* Responsive styles for mobile devices */
+
+@media (max-width: 400px) {
+  .desktop {
+    display: none;
+  }
+
+  .AppWrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .descriptionPanel {
+    max-width: 200px;
+  }
+
+  p {
+    line-height: 25px;
+  }
 
 }
 
-.WrapperBase p {
-  margin: 0;
-  padding: 0;
-
-  margin-bottom: 15px;
+@media (min-width: 400px) {
+  .mobileOnly {
+    display: none;
+  }
 }
-
-.WrapperBase ul {
-  list-style: none;
-  
-}
-
