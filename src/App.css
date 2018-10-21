@@ -3,15 +3,16 @@
 }
 
 .TitlePanel {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .descriptionPanel {
-  margin-bottom: 15px;  
+  margin-bottom: 65px;  
 }
 
 .descriptionPanel p {
-  font-weight: 200;
+  font-weight: 300;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .linksPanel a:hover {
-  color: paleturquoise;
+  color: #484848;
 }
 
 .mobileOnly {
