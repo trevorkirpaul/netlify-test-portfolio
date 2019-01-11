@@ -15,6 +15,21 @@ const blogsReducer = (state = initialState, { type, payload }) => {
         error: null,
       };
 
+    case FETCH_ALL_BLOGS.SUCCEED:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        allBlogs: payload,
+      };
+
+    case FETCH_ALL_BLOGS.FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
     default:
       return state;
   }
