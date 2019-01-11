@@ -16,6 +16,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  background: #f8f8f8;
+  color: #383838;
 }
 
 code {
