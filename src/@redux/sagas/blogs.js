@@ -7,15 +7,11 @@ import * as blogsActions from '../actions/blogs.js';
 //workers
 function* fetchAllBlogs() {
   const CMS_URI = process.env.REACT_APP_CMS_URI;
-  const CMS_TOKEN = process.env.REACT_APP_CMS_TOKEN;
+  // const CMS_TOKEN = process.env.REACT_APP_CMS_TOKEN;
 
   const URI = `${CMS_URI}/posts`;
   try {
-    const { data } = yield call(axios.get, URI, {
-      headers: {
-        Authorization: `Bearer ${CMS_TOKEN}`,
-      },
-    });
+    const { data } = yield call(axios.get, URI);
     yield put(blogsActions.succeedFetchAllBlogs(data));
   } catch (error) {
     yield put(blogsActions.failFetchAllBlogs(error));
