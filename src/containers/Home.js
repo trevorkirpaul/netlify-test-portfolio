@@ -55,8 +55,8 @@ class Home extends Component {
       <Wrapper>
         {allBlogs ? (
           allBlogs.map(blog => (
-            <PostWrapper>
-              <ReactMarkdown key={blog.id} source={blog.body} />
+            <PostWrapper key={blog.id}>
+              <ReactMarkdown source={blog.body} />
               <StyledDate>
                 {moment(blog.createdAt).format('MMMM Do, YYYY')}
               </StyledDate>
