@@ -10,8 +10,8 @@ const Wrapper = styled.div`
 `;
 
 const SocialWrap = styled.div`
-  background: #383838;
-  color: #f8f8f8;
+  /* background: #383838; */
+  color: #383838;
   display: flex;
   align-items: baseline;
   align-content: center;
@@ -21,8 +21,9 @@ const SocialWrap = styled.div`
 `;
 
 const A = styled.a`
-  color: #f8f8f8;
-
+  color: #383838;
+  font-size: 24px;
+  margin-right: 25px;
   &:hover {
     color: palevioletred;
   }
