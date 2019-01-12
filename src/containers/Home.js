@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import styled, { keyframes } from 'styled-components';
+import moment from 'moment';
 
 import * as blogActions from '@redux/actions/blogs';
 
@@ -26,6 +27,19 @@ const I = styled.i`
   animation: ${rotate} 1s linear infinite;
 `;
 
+const StyledDate = styled.h2`
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+`;
+
+const PostWrapper = styled.div`
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid palevioletred;
+`;
+
 class Home extends Component {
   componentDidMount() {
     this.props.actions.blogActions.startFetchAllBlogs();
@@ -41,7 +55,12 @@ class Home extends Component {
       <Wrapper>
         {allBlogs ? (
           allBlogs.map(blog => (
-            <ReactMarkdown key={blog.id} source={blog.body} />
+            <PostWrapper key={blog.id}>
+              <ReactMarkdown source={blog.body} />
+              <StyledDate>
+                {moment(blog.createdAt).format('MMMM Do, YYYY')}
+              </StyledDate>
+            </PostWrapper>
           ))
         ) : (
           <LoadingWrapper>

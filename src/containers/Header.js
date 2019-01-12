@@ -7,11 +7,15 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 600px) {
+    /* flex-direction: column-reverse; */
+  }
 `;
 
 const SocialWrap = styled.div`
-  background: #383838;
-  color: #f8f8f8;
+  /* background: #383838; */
+  color: #383838;
   display: flex;
   align-items: baseline;
   align-content: center;
@@ -21,10 +25,19 @@ const SocialWrap = styled.div`
 `;
 
 const A = styled.a`
-  color: #f8f8f8;
-
+  color: #383838;
+  font-size: 24px;
+  margin-right: 25px;
   &:hover {
     color: palevioletred;
+  }
+
+  @media (max-width: 600px) {
+    margin-right: 0;
+
+    &:hover {
+      color: #383838;
+    }
   }
 `;
 

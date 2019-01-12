@@ -7,9 +7,9 @@ import * as blogsActions from '../actions/blogs.js';
 //workers
 function* fetchAllBlogs() {
   const CMS_URI = process.env.REACT_APP_CMS_URI;
-  // const CMS_TOKEN = process.env.REACT_APP_CMS_TOKEN;
+  const sortByCreatedDesc = '?_sort=createdAt:desc';
 
-  const URI = `${CMS_URI}/posts`;
+  const URI = `${CMS_URI}/posts${sortByCreatedDesc}`;
   try {
     const { data } = yield call(axios.get, URI);
     yield put(blogsActions.succeedFetchAllBlogs(data));
