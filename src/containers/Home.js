@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
 
 import * as blogActions from '@redux/actions/blogs';
 
@@ -9,9 +10,18 @@ class Home extends Component {
     this.props.actions.blogActions.startFetchAllBlogs();
   }
   render() {
+    const {
+      data: {
+        blogs: { allBlogs },
+      },
+    } = this.props;
+
     return (
       <div>
-        <h1>trevorKIRPAUL</h1>
+        {allBlogs &&
+          allBlogs.map(blog => (
+            <ReactMarkdown key={blog.id} source={blog.body} />
+          ))}
       </div>
     );
   }
