@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import styled, { keyframes } from 'styled-components';
 import moment from 'moment';
 
+import CodeBlock from 'components/CodeBlock';
 import * as blogActions from '@redux/actions/blogs';
 
 const rotate = keyframes`
@@ -56,7 +57,12 @@ class Home extends Component {
         {allBlogs ? (
           allBlogs.map(blog => (
             <PostWrapper key={blog.id}>
-              <ReactMarkdown source={blog.body} />
+              <ReactMarkdown
+                source={blog.body}
+                renderers={{
+                  code: CodeBlock,
+                }}
+              />
               <StyledDate>
                 {moment(blog.createdAt).format('MMMM Do, YYYY')}
               </StyledDate>
