@@ -7,6 +7,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 600px) {
+    /* flex-direction: column-reverse; */
+  }
 `;
 
 const SocialWrap = styled.div`
@@ -26,6 +30,14 @@ const A = styled.a`
   margin-right: 25px;
   &:hover {
     color: palevioletred;
+  }
+
+  @media (max-width: 600px) {
+    margin-right: 0;
+
+    &:hover {
+      color: #383838;
+    }
   }
 `;
 
