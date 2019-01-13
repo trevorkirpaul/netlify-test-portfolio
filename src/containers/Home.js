@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import CodeBlock from 'components/CodeBlock';
 import * as blogActions from '@redux/actions/blogs';
+import Wrapper from 'components/Wrapper';
 
 const rotate = keyframes`
   from {
@@ -17,8 +18,6 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
-
-const Wrapper = styled.div``;
 
 const LoadingWrapper = styled.div`
   text-align: center;
@@ -48,13 +47,23 @@ class Home extends Component {
   render() {
     const {
       data: {
-        blogs: { allBlogs },
+        blogs: { allBlogs, loading },
       },
     } = this.props;
 
+    if (loading) {
+      return (
+        <Wrapper>
+          <LoadingWrapper>
+            <I className="fas fa-circle-notch" />
+          </LoadingWrapper>
+        </Wrapper>
+      );
+    }
+
     return (
       <Wrapper>
-        {allBlogs ? (
+        {allBlogs &&
           allBlogs.map(blog => (
             <PostWrapper key={blog.id}>
               <ReactMarkdown
@@ -67,12 +76,7 @@ class Home extends Component {
                 {moment(blog.createdAt).format('MMMM Do, YYYY')}
               </StyledDate>
             </PostWrapper>
-          ))
-        ) : (
-          <LoadingWrapper>
-            <I className="fas fa-circle-notch" />
-          </LoadingWrapper>
-        )}
+          ))}
       </Wrapper>
     );
   }
