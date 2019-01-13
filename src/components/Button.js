@@ -10,10 +10,12 @@ const StyledButton = styled.button`
   border-bottom: 2px solid #383838;
   padding: 10px 15px;
 
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+
   &:hover {
     background: #000;
     border-bottom-color: palevioletred;
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   }
 `;
 

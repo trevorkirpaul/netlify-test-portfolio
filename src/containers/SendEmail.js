@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import * as emailActions from '@redux/actions/email';
 import Wrapper from 'components/Wrapper';
@@ -56,11 +57,21 @@ class SendEmail extends Component {
       subject: '',
       body: '',
       error: '',
+      recaptchaValue: null,
+      invalidRecaptcha: null,
     };
   }
 
   handleOnChange = ({ target: { value, name } }) => {
     return this.setState({ [name]: value });
+  };
+
+  handleRecaptcha = value => {
+    // if value is null recaptcha expired
+    if (value === null) {
+      return this.setState({ invalidRecaptcha: true });
+    }
+    this.setState({ recaptchaValue: value });
   };
 
   handleOnSubmit = () => {
@@ -91,7 +102,7 @@ class SendEmail extends Component {
 
   render() {
     const { data } = this.props;
-    const { error } = this.state;
+    const { error, recaptchaValue } = this.state;
     return (
       <Wrapper>
         <Modal isOpen={data.email.successfullySent} title="Success">
@@ -119,8 +130,18 @@ class SendEmail extends Component {
             label="Send email"
             onClick={this.handleOnSubmit}
             loading={data.email.loading}
+            disabled={!recaptchaValue}
           />
         </FormWrapper>
+
+        <ReCAPTCHA
+          style={{ display: 'inline-block' }}
+          theme="dark"
+          ref={this._reCaptchaRef}
+          sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+          onChange={this.handleRecaptcha}
+          asyncScriptOnLoad={this.asyncScriptOnLoad}
+        />
       </Wrapper>
     );
   }
