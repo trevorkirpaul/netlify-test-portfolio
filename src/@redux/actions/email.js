@@ -1,4 +1,4 @@
-import { SEND_EMAIL } from '../constants/email';
+import { SEND_EMAIL, COMPLETE_AND_RETURN } from '../constants/email';
 
 const startSendEmail = payload => ({
   type: SEND_EMAIL.START,
@@ -15,4 +15,6 @@ const failSendEmail = payload => ({
   payload,
 });
 
-export { startSendEmail, succeedSendEmail, failSendEmail };
+const completeAndReturn = () => ({ type: COMPLETE_AND_RETURN });
+
+export { startSendEmail, succeedSendEmail, failSendEmail, completeAndReturn };

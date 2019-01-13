@@ -7,6 +7,7 @@ import Wrapper from 'components/Wrapper';
 import TitlePanel from 'components/TitlePanel';
 import Field from 'components/Field';
 import Button from 'components/Button';
+import Modal from 'components/Modal';
 
 const createFields = (state, onChange) => [
   {
@@ -52,19 +53,37 @@ class SendEmail extends Component {
     const { email, subject, body } = this.state;
     const { actions } = this.props;
 
-    if ((!email, !subject, !body)) {
+    if (!email || !subject || !body) {
       return this.setState({ error: 'please complete this form' });
     }
 
-    this.setState({ email: '' });
+    this.setState({ error: '' });
 
     return actions.email.startSendEmail({ email, subject, body });
   };
 
+  handleDone = () => {
+    const { actions, history } = this.props;
+
+    /**
+     * We'll clear values in redux that render the completion modal
+     * and then push navigation back to the home view
+     */
+
+    actions.email.completeAndReturn();
+
+    return history.push('/');
+  };
+
   render() {
     const { data } = this.props;
+    const { error } = this.state;
     return (
       <Wrapper>
+        <Modal isOpen={data.email.successfullySent} title="Success">
+          <span>Email successfully sent</span>
+          <Button onClick={this.handleDone}>Return Home</Button>
+        </Modal>
         <TitlePanel
           title="Send Email"
           subTitle="Complete this form to send me an email"
@@ -74,7 +93,16 @@ class SendEmail extends Component {
           <Field key={field.name} {...field} />
         ))}
 
-        <Button label="Send email" onClick={this.handleOnSubmit} />
+        {error && (
+          <div>
+            <span>{error}</span>
+          </div>
+        )}
+        <Button
+          label="Send email"
+          onClick={this.handleOnSubmit}
+          loading={data.email.loading}
+        />
       </Wrapper>
     );
   }
