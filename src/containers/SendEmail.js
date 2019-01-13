@@ -19,6 +19,10 @@ const TextWrapper = styled.div`
   margin-bottom: 15px;
 `;
 
+const FormWrapper = styled.div`
+  margin: 15px;
+`;
+
 const createFields = (state, onChange) => [
   {
     name: 'email',
@@ -101,20 +105,22 @@ class SendEmail extends Component {
           subTitle="Complete this form to send me an email"
         />
 
-        {createFields(this.state, this.handleOnChange).map(field => (
-          <Field key={field.name} {...field} />
-        ))}
+        <FormWrapper>
+          {createFields(this.state, this.handleOnChange).map(field => (
+            <Field key={field.name} {...field} />
+          ))}
 
-        {error && (
-          <TextWrapper>
-            <ErrorText>{error}</ErrorText>
-          </TextWrapper>
-        )}
-        <Button
-          label="Send email"
-          onClick={this.handleOnSubmit}
-          loading={data.email.loading}
-        />
+          {error && (
+            <TextWrapper>
+              <ErrorText>{error}</ErrorText>
+            </TextWrapper>
+          )}
+          <Button
+            label="Send email"
+            onClick={this.handleOnSubmit}
+            loading={data.email.loading}
+          />
+        </FormWrapper>
       </Wrapper>
     );
   }

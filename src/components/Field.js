@@ -5,6 +5,13 @@ const StyledInput = styled.input`
   display: block;
   margin-bottom: 15px;
   padding: 10px 15px;
+  border: none;
+  border-bottom: 2px solid palevioletred;
+  background: white;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Field = ({ type = 'text', name, value, onChange, placeholder }) => (
