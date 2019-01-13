@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import CodeBlock from 'components/CodeBlock';
 import * as blogActions from '@redux/actions/blogs';
+import Wrapper from 'components/Wrapper';
 
 const rotate = keyframes`
   from {
@@ -16,11 +17,6 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
-
-const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: 700px;
 `;
 
 const LoadingWrapper = styled.div`

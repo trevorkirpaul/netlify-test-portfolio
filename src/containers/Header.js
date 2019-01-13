@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -41,6 +42,27 @@ const A = styled.a`
   }
 `;
 
+const StyledLink = styled(Link)`
+  color: #383838;
+  font-size: 24px;
+  margin-right: 25px;
+  &:hover {
+    color: palevioletred;
+  }
+
+  @media (max-width: 600px) {
+    margin-right: 0;
+
+    &:hover {
+      color: #383838;
+    }
+  }
+`;
+
+const StyledLinkWithoutDecoration = styled(StyledLink)`
+  text-decoration: none;
+`;
+
 const I = styled.i`
   /* margin-right: 5px; */
   padding: 5px 10px;
@@ -66,11 +88,16 @@ class Header extends Component {
           <A href="https://www.github.com/trevorkirpaul" target="_blank">
             <I className="fab fa-github-alt" />
           </A>
+          <StyledLink to="/send-email">
+            <I className="fas fa-at" />
+          </StyledLink>
         </SocialWrap>
-        <Logo>
-          trevor
-          <Bold>KIRPAUL</Bold>
-        </Logo>
+        <StyledLinkWithoutDecoration to="/">
+          <Logo>
+            trevor
+            <Bold>KIRPAUL</Bold>
+          </Logo>
+        </StyledLinkWithoutDecoration>
       </Wrapper>
     );
   }
