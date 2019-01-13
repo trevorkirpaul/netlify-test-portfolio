@@ -1,38 +1,41 @@
-import { FETCH_ALL_BLOGS } from '../constants/blogs';
+import { SEND_EMAIL, COMPLETE_AND_RETURN } from '../constants/email';
 
 const initialState = {
   loading: false,
   error: null,
-  allBlogs: [],
+  successfullySent: false,
 };
 
-const blogsReducer = (state = initialState, { type, payload }) => {
+const emailReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_ALL_BLOGS.START:
+    case SEND_EMAIL.START:
       return {
         ...state,
         loading: true,
         error: null,
       };
 
-    case FETCH_ALL_BLOGS.SUCCEED:
+    case SEND_EMAIL.SUCCEED:
       return {
         ...state,
         loading: false,
         error: null,
-        allBlogs: payload,
+        successfullySent: true,
       };
 
-    case FETCH_ALL_BLOGS.FAIL:
+    case SEND_EMAIL.FAIL:
       return {
         ...state,
         loading: false,
         error: payload,
       };
 
+    case COMPLETE_AND_RETURN:
+      return initialState;
+
     default:
       return state;
   }
 };
 
-export default blogsReducer;
+export default emailReducer;

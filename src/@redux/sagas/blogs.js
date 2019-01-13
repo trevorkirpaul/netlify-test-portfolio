@@ -2,7 +2,7 @@ import { takeLatest, put, call } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { FETCH_ALL_BLOGS } from '../constants/blogs';
-import * as blogsActions from '../actions/blogs.js';
+import * as blogsActions from '../actions/blogs';
 
 //workers
 function* fetchAllBlogs() {
