@@ -1,7 +1,7 @@
 import { FETCH_ALL_BLOGS } from '../constants/blogs';
 
 const initialState = {
-  lodaing: false,
+  loading: false,
   error: null,
   allBlogs: [],
 };

@@ -51,9 +51,19 @@ class Home extends Component {
       },
     } = this.props;
 
+    if (loading) {
+      return (
+        <Wrapper>
+          <LoadingWrapper>
+            <I className="fas fa-circle-notch" />
+          </LoadingWrapper>
+        </Wrapper>
+      );
+    }
+
     return (
       <Wrapper>
-        {allBlogs || loading ? (
+        {allBlogs &&
           allBlogs.map(blog => (
             <PostWrapper key={blog.id}>
               <ReactMarkdown
@@ -66,12 +76,7 @@ class Home extends Component {
                 {moment(blog.createdAt).format('MMMM Do, YYYY')}
               </StyledDate>
             </PostWrapper>
-          ))
-        ) : (
-          <LoadingWrapper>
-            <I className="fas fa-circle-notch" />
-          </LoadingWrapper>
-        )}
+          ))}
       </Wrapper>
     );
   }

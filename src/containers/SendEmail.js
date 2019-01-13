@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 
 import * as emailActions from '@redux/actions/email';
 import Wrapper from 'components/Wrapper';
@@ -8,6 +9,15 @@ import TitlePanel from 'components/TitlePanel';
 import Field from 'components/Field';
 import Button from 'components/Button';
 import Modal from 'components/Modal';
+import { ErrorText } from 'components/Text';
+
+/**
+ * Styles
+ */
+
+const TextWrapper = styled.div`
+  margin-bottom: 15px;
+`;
 
 const createFields = (state, onChange) => [
   {
@@ -81,7 +91,9 @@ class SendEmail extends Component {
     return (
       <Wrapper>
         <Modal isOpen={data.email.successfullySent} title="Success">
-          <span>Email successfully sent</span>
+          <TextWrapper>
+            <span>Email successfully sent</span>
+          </TextWrapper>
           <Button onClick={this.handleDone}>Return Home</Button>
         </Modal>
         <TitlePanel
@@ -94,9 +106,9 @@ class SendEmail extends Component {
         ))}
 
         {error && (
-          <div>
-            <span>{error}</span>
-          </div>
+          <TextWrapper>
+            <ErrorText>{error}</ErrorText>
+          </TextWrapper>
         )}
         <Button
           label="Send email"
