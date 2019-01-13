@@ -18,7 +18,10 @@ const rotate = keyframes`
   }
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 700px;
+`;
 
 const LoadingWrapper = styled.div`
   text-align: center;
@@ -48,13 +51,13 @@ class Home extends Component {
   render() {
     const {
       data: {
-        blogs: { allBlogs },
+        blogs: { allBlogs, loading },
       },
     } = this.props;
 
     return (
       <Wrapper>
-        {allBlogs ? (
+        {allBlogs || loading ? (
           allBlogs.map(blog => (
             <PostWrapper key={blog.id}>
               <ReactMarkdown
