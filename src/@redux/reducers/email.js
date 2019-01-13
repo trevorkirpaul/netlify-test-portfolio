@@ -1,8 +1,9 @@
-import { SEND_EMAIL } from '../constants/email';
+import { SEND_EMAIL, COMPLETE_AND_RETURN } from '../constants/email';
 
 const initialState = {
   loading: false,
   error: null,
+  successfullySent: false,
 };
 
 const emailReducer = (state = initialState, { type, payload }) => {
@@ -19,6 +20,7 @@ const emailReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         error: null,
+        successfullySent: true,
       };
 
     case SEND_EMAIL.FAIL:
@@ -27,6 +29,10 @@ const emailReducer = (state = initialState, { type, payload }) => {
         loading: false,
         error: payload,
       };
+
+    case COMPLETE_AND_RETURN:
+      return initialState;
+
     default:
       return state;
   }

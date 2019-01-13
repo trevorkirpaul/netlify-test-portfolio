@@ -5,4 +5,6 @@ const SEND_EMAIL = {
   FAIL: `@@${NAME}/SEND_EMAIL/FAIL`,
 };
 
-export { SEND_EMAIL };
+const COMPLETE_AND_RETURN = `@@${NAME}/COMPLETE_AND_RETURN`;
+
+export { SEND_EMAIL, COMPLETE_AND_RETURN };

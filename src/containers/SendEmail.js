@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import * as emailActions from '@redux/actions/email';
 import Wrapper from 'components/Wrapper';
 import TitlePanel from 'components/TitlePanel';
 import Field from 'components/Field';
+import Button from 'components/Button';
 
 const createFields = (state, onChange) => [
   {
@@ -36,6 +40,7 @@ class SendEmail extends Component {
       email: '',
       subject: '',
       body: '',
+      error: '',
     };
   }
 
@@ -43,7 +48,21 @@ class SendEmail extends Component {
     return this.setState({ [name]: value });
   };
 
+  handleOnSubmit = () => {
+    const { email, subject, body } = this.state;
+    const { actions } = this.props;
+
+    if ((!email, !subject, !body)) {
+      return this.setState({ error: 'please complete this form' });
+    }
+
+    this.setState({ email: '' });
+
+    return actions.email.startSendEmail({ email, subject, body });
+  };
+
   render() {
+    const { data } = this.props;
     return (
       <Wrapper>
         <TitlePanel
@@ -54,9 +73,26 @@ class SendEmail extends Component {
         {createFields(this.state, this.handleOnChange).map(field => (
           <Field key={field.name} {...field} />
         ))}
+
+        <Button label="Send email" onClick={this.handleOnSubmit} />
       </Wrapper>
     );
   }
 }
 
-export default SendEmail;
+const mapState = state => ({
+  data: {
+    email: state.email,
+  },
+});
+
+const mapDispatch = dispatch => ({
+  actions: {
+    email: bindActionCreators(emailActions, dispatch),
+  },
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(SendEmail);
