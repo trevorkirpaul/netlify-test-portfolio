@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import CodeBlock from 'components/CodeBlock';
 import * as blogActions from '@redux/actions/blogs';
-import Wrapper from 'components/Wrapper';
+import { ViewWrapper } from 'components/Wrapper';
 
 const rotate = keyframes`
   from {
@@ -53,16 +53,16 @@ class Home extends Component {
 
     if (loading) {
       return (
-        <Wrapper>
+        <ViewWrapper>
           <LoadingWrapper>
             <I className="fas fa-circle-notch" />
           </LoadingWrapper>
-        </Wrapper>
+        </ViewWrapper>
       );
     }
 
     return (
-      <Wrapper>
+      <ViewWrapper>
         {allBlogs &&
           allBlogs.map(blog => (
             <PostWrapper key={blog.id}>
@@ -77,7 +77,7 @@ class Home extends Component {
               </StyledDate>
             </PostWrapper>
           ))}
-      </Wrapper>
+      </ViewWrapper>
     );
   }
 }
