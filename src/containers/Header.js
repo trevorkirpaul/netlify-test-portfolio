@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   padding: 15px;
-  margin: 15px;
+  /* margin: 15px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: fixed;
+  width: 100%;
+  background: #f8f8f8;
+  top: 0;
+  left: 0;
 
   @media (max-width: 600px) {
     /* flex-direction: column-reverse; */

@@ -6,6 +6,14 @@ const Styles = styled.div`
   max-width: 700px;
 `;
 
+const StylesViewWrapper = styled(Styles)`
+  margin-top: 75px;
+`;
+
 const Wrapper = props => <Styles>{props.children}</Styles>;
 
-export default Wrapper;
+const ViewWrapper = props => (
+  <StylesViewWrapper>{props.children}</StylesViewWrapper>
+);
+
+export { Wrapper as default, ViewWrapper };
