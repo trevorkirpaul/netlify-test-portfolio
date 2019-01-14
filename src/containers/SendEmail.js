@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import * as emailActions from '@redux/actions/email';
-import Wrapper from 'components/Wrapper';
+import { ViewWrapper } from 'components/Wrapper';
 import TitlePanel from 'components/TitlePanel';
 import Field from 'components/Field';
 import Button from 'components/Button';
@@ -71,7 +71,7 @@ class SendEmail extends Component {
     if (value === null) {
       return this.setState({ invalidRecaptcha: true });
     }
-    this.setState({ recaptchaValue: value });
+    return this.setState({ recaptchaValue: value });
   };
 
   handleOnSubmit = () => {
@@ -104,7 +104,7 @@ class SendEmail extends Component {
     const { data } = this.props;
     const { error, recaptchaValue } = this.state;
     return (
-      <Wrapper>
+      <ViewWrapper>
         <Modal isOpen={data.email.successfullySent} title="Success">
           <TextWrapper>
             <span>Email successfully sent</span>
@@ -142,7 +142,7 @@ class SendEmail extends Component {
           onChange={this.handleRecaptcha}
           asyncScriptOnLoad={this.asyncScriptOnLoad}
         />
-      </Wrapper>
+      </ViewWrapper>
     );
   }
 }
