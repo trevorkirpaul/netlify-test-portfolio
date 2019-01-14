@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import * as emailActions from '@redux/actions/email';
-import Wrapper, { ViewWrapper } from 'components/Wrapper';
+import { ViewWrapper } from 'components/Wrapper';
 import TitlePanel from 'components/TitlePanel';
 import Field from 'components/Field';
 import Button from 'components/Button';
