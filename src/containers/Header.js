@@ -94,9 +94,6 @@ class Header extends Component {
           <A href="https://www.github.com/trevorkirpaul" target="_blank">
             <I className="fab fa-github-alt" />
           </A>
-          <StyledLink to="/send-email">
-            <I className="fas fa-at" />
-          </StyledLink>
         </SocialWrap>
         <StyledLinkWithoutDecoration to="/">
           <Logo>
